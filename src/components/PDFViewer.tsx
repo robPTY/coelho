@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Worker } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import { Viewer } from "@react-pdf-viewer/core";
 
-const PdfViewer: React.FC<{ fileUrl: string }> = async ({ fileUrl }) => {
+const PdfViewer: React.FC<{ fileUrl: string }> = ({ fileUrl }) => {
+  const [workerUrl, setWorkerUrl] = useState<string>("");
   const defaultLayout = defaultLayoutPlugin();
 
+  useEffect(() => {
+    const fetchWorkerUrl = async () => {
+      const { version } = await import("pdfjs-dist/package.json");
+      setWorkerUrl(
+        `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.js`
+      );
+    };
+
+    fetchWorkerUrl();
+  }, []);
+
+  if (!workerUrl) return <div>Loading...</div>;
+
   return (
-    <Worker
-      workerUrl={`https://unpkg.com/pdfjs-dist@${
-        (await import("pdfjs-dist/package.json")).version
-      }/build/pdf.worker.min.js`}
-    >
+    <Worker workerUrl={workerUrl}>
       <div style={{ height: "750px" }}>
         <Viewer fileUrl={fileUrl} plugins={[defaultLayout]} />
       </div>
