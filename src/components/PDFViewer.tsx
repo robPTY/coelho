@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Worker } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import { Viewer } from "@react-pdf-viewer/core";
-
+/**
+ *
+ * Props:
+ * fileUrl: string - The URL of the PDF file to display
+ */
 const PdfViewer: React.FC<{ fileUrl: string }> = ({ fileUrl }) => {
   const [workerUrl, setWorkerUrl] = useState<string>("");
   const defaultLayout = defaultLayoutPlugin();
