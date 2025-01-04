@@ -1,12 +1,16 @@
 import React from "react";
 import PdfViewer from "./components/PDFViewer.tsx";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./constants/router/router";
 
 const MyApp: React.FC = () => {
-  const pdfUrl = `${process.env.PUBLIC_URL}/Katz.pdf`;
+  // const pdfUrl = `${process.env.PUBLIC_URL}/Katz.pdf`;
   return (
     <>
-      <h1>PDF Viewer</h1>
-      <PdfViewer fileUrl={pdfUrl} />
+      {/* <PdfViewer fileUrl={pdfUrl} /> */}
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
     </>
   );
 };

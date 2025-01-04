@@ -9,7 +9,6 @@ import { Viewer } from "@react-pdf-viewer/core";
  */
 const PdfViewer: React.FC<{ fileUrl: string }> = ({ fileUrl }) => {
   const [workerUrl, setWorkerUrl] = useState<string>("");
-  const defaultLayout = defaultLayoutPlugin();
 
   useEffect(() => {
     const fetchWorkerUrl = async () => {
@@ -27,7 +26,7 @@ const PdfViewer: React.FC<{ fileUrl: string }> = ({ fileUrl }) => {
   return (
     <Worker workerUrl={workerUrl}>
       <div style={{ height: "750px" }}>
-        <Viewer fileUrl={fileUrl} plugins={[defaultLayout]} />
+        <Viewer fileUrl={fileUrl} />
       </div>
     </Worker>
   );

@@ -1,0 +1,5 @@
+.pdfCard {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
