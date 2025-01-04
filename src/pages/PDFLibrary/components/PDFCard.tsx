@@ -17,16 +17,16 @@ const PDFCard: React.FC<PDFCardProps> = ({
   return (
     <div className="pdfCard">
       <div className="pdfPreview">
-        <img src={thumbnail} />
+        <img className="pdfThumbnail" src={thumbnail} />
       </div>
       <div className="pdfInformation">
         <div className="titleBar">
-          <h3>{title}</h3>
+          <h4 className="pdfTitle">{title}</h4>
         </div>
         <div className="buttonBar">
           <p>{creationDate}</p>
           <p>{fileSize}</p>
-          <button></button>
+          <button className="pdfOpenButton"></button>
         </div>
       </div>
     </div>

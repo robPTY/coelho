@@ -1,14 +1,17 @@
+import React from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { ROUTES } from "./routes";
+import HomePage from "../../pages/HomePage/HomePage.tsx";
+import PDFLibrary from "../../pages/PDFLibrary/PDFLibrary.tsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    ROUTES.map((route) => (
-      <Route key={route.path} path={route.path} element={route.element} />
-    ))
+    <>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/pdf-library" element={<PDFLibrary />} />
+    </>
   )
 );

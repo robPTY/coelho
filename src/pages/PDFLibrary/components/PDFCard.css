@@ -2,4 +2,54 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  background-color: #b8d7e6;
+  width: 225px;
+  height: 200px;
+}
+
+.pdfPreview {
+  height: 45%;
+  border: 1px solid black; /* temporary for visualization */
+  border-radius: 8px 8px 0px 0px;
+}
+
+.pdfThumbnail {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  object-fit: cover;
+}
+
+.pdfTitle {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin: 0;
+}
+
+.titleBar {
+  margin-bottom: auto;
+}
+
+.pdfInformation {
+  height: 55%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.buttonBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+}
+
+.pdfOpenButton {
+  background-color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 20%;
+  height: 8vh;
+  padding: 0;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
