@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.signup-btn,
+.login-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signup-btn {
+  background-color: #000;
+  color: white;
+}
+
+.login-btn {
+  background-color: transparent;
+  color: #000;
+}
+
+.signup-btn:hover,
+.login-btn:hover {
+  opacity: 0.8;
+}

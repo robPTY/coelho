@@ -48,7 +48,7 @@
   border-radius: 8px;
   cursor: pointer;
   width: 20%;
-  height: 8vh;
+  height: auto;
   padding: 0;
   border: 1px solid black;
   box-sizing: border-box;
