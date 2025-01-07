@@ -41,6 +41,7 @@
   flex-direction: row;
   justify-content: space-between;
   height: auto;
+  align-items: center;
 }
 
 .pdfOpenButton {
@@ -48,8 +49,13 @@
   border-radius: 8px;
   cursor: pointer;
   width: 20%;
-  height: auto;
+  height: 35%;
   padding: 0;
   border: 1px solid black;
   box-sizing: border-box;
+}
+
+.openPageIcon {
+  width: 100%;
+  height: 100%;
 }

@@ -1,7 +1,9 @@
 import React from "react";
 import "./PDFCard.css";
+import { useNavigate } from "react-router-dom";
 
 interface PDFCardProps {
+  id: string;
   title: string;
   thumbnail: string;
   creationDate: string;
@@ -9,11 +11,18 @@ interface PDFCardProps {
 }
 
 const PDFCard: React.FC<PDFCardProps> = ({
+  id,
   title,
   thumbnail,
   creationDate,
   fileSize,
 }) => {
+  const openPage = "/icons/openPage.png";
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate(`/pdf-library/${id}`);
+  };
+
   return (
     <div className="pdfCard">
       <div className="pdfPreview">
@@ -26,7 +35,9 @@ const PDFCard: React.FC<PDFCardProps> = ({
         <div className="buttonBar">
           <p>{creationDate}</p>
           <p>{fileSize}</p>
-          <button className="pdfOpenButton"></button>
+          <button className="pdfOpenButton" onClick={handleButtonClick}>
+            <img src={openPage} alt="Open Page" className="openPageIcon" />
+          </button>
         </div>
       </div>
     </div>

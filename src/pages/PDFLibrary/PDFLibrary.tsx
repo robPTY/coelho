@@ -12,6 +12,13 @@ const PDFLibrary: React.FC = () => {
         <h1 className="libraryHeader">PDF Library</h1>
         <div className="pdfLibraryContainer">
           <PDFCard
+            id={"1"}
+            title={"Uber Receipt"}
+            thumbnail={testImageUrl}
+            fileSize={"98MB"}
+            creationDate={"Jan 1"}
+          />
+          {/* <PDFCard
             title={"Uber Receipt"}
             thumbnail={testImageUrl}
             fileSize={"98MB"}
@@ -34,13 +41,7 @@ const PDFLibrary: React.FC = () => {
             thumbnail={testImageUrl}
             fileSize={"98MB"}
             creationDate={"Jan 1"}
-          />
-          <PDFCard
-            title={"Uber Receipt"}
-            thumbnail={testImageUrl}
-            fileSize={"98MB"}
-            creationDate={"Jan 1"}
-          />
+          /> */}
         </div>
       </div>
     </>
