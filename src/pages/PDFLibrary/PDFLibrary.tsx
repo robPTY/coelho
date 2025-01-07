@@ -6,19 +6,44 @@ import PDFCard from "./components/PDFCard.tsx";
 const PDFLibrary: React.FC = () => {
   const testImageUrl = "/images/otter.jpg";
   return (
-    <div>
+    <>
       <MainHeader />
-      <h1>PDF Library</h1>
-      <div className="pdfLibraryContainer">
-        {/*<PDFCard
-          title={"Uber Receipt"}
-          thumbnail={testImageUrl}
-          fileSize={"98MB"}
-          creationDate={"Jan 1"}
-        />
-        */}
+      <div className="pdfLibrary">
+        <h1 className="libraryHeader">PDF Library</h1>
+        <div className="pdfLibraryContainer">
+          <PDFCard
+            title={"Uber Receipt"}
+            thumbnail={testImageUrl}
+            fileSize={"98MB"}
+            creationDate={"Jan 1"}
+          />
+          <PDFCard
+            title={"Uber Receipt"}
+            thumbnail={testImageUrl}
+            fileSize={"98MB"}
+            creationDate={"Jan 1"}
+          />
+          <PDFCard
+            title={"Uber Receipt"}
+            thumbnail={testImageUrl}
+            fileSize={"98MB"}
+            creationDate={"Jan 1"}
+          />
+          <PDFCard
+            title={"Uber Receipt"}
+            thumbnail={testImageUrl}
+            fileSize={"98MB"}
+            creationDate={"Jan 1"}
+          />
+          <PDFCard
+            title={"Uber Receipt"}
+            thumbnail={testImageUrl}
+            fileSize={"98MB"}
+            creationDate={"Jan 1"}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

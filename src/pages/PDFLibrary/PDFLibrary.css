@@ -1,4 +1,17 @@
 .pdfLibraryContainer {
-  margin: auto;
-  padding: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.pdfLibrary {
+  font-family: "Poppins", sans-serif;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem 1rem;
+}
+
+.libraryHeader {
+  font-weight: bold;
 }
