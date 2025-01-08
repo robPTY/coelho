@@ -8,6 +8,47 @@
   font-family: "Poppins", sans-serif;
 }
 
-.pdfTools {
-  gap: 1rem;
+.pdfTools,
+.pdfOperations {
+  display: flex;
+  gap: 10px;
+}
+
+.pdfOperations .shareButton {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  background-color: #000000;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.25rem 0.5rem;
+}
+
+.headerIcon {
+  font-size: 1.8rem;
+}
+
+.shareButton .headerIcon {
+  font-size: 1.3rem;
+}
+
+.pdfTools button,
+.pdfOperations button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.pdfInfoContent {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
 }
