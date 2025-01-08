@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Worker } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import { Viewer } from "@react-pdf-viewer/core";
+import "./PDFViewer.css";
 /**
  *
  * Props:
@@ -25,7 +26,7 @@ const PdfViewer: React.FC<{ fileUrl: string }> = ({ fileUrl }) => {
 
   return (
     <Worker workerUrl={workerUrl}>
-      <div style={{ height: "750px" }}>
+      <div className="pdfViewerContainer">
         <Viewer fileUrl={fileUrl} />
       </div>
     </Worker>

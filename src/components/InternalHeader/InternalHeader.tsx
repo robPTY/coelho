@@ -7,6 +7,7 @@ import { IoIosUndo } from "react-icons/io";
 import { IoIosRedo } from "react-icons/io";
 import { IoChatbox } from "react-icons/io5";
 import { FaShareAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./InternalHeader.css";
 
 interface internalHeaderProps {
@@ -14,10 +15,15 @@ interface internalHeaderProps {
 }
 
 const InternalHeader: React.FC<internalHeaderProps> = ({ title }) => {
+  const navigate = useNavigate();
+  const handleHouseClick = () => {
+    navigate(`/pdf-library`);
+  };
+
   return (
     <header className="internalHeader">
       <div className="pdfTools">
-        <button className="homeButton">
+        <button className="homeButton" onClick={handleHouseClick}>
           <BiSolidHomeAlt2 className="headerIcon" />
         </button>
         <button className="cursorButton">

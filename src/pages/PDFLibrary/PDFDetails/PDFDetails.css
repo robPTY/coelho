@@ -1,0 +1,15 @@
+.mainContainer {
+  display: flex;
+  height: 30vh;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.middlePanel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  transition: flex 0.3s ease;
+}

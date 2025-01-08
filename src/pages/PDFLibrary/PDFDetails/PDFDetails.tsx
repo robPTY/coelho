@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import PDFViewer from "../../../components/PDFViewer.tsx";
 import InternalHeader from "../../../components/InternalHeader/InternalHeader.tsx";
 
 const PDFDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+  const pdfUrl = `${process.env.PUBLIC_URL}/pdfs/Katz.pdf`;
   return (
     <>
       <InternalHeader title="test" />
-      <div>
+      <div className="mainContainer">
         <h1>PDF Details for ID: {id}</h1>
+        <div className={`middlePanel ${isChatOpen ? "compressed" : ""}`}>
+          <PDFViewer fileUrl={pdfUrl} />
+        </div>
       </div>
     </>
   );
