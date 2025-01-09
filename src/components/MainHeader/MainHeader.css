@@ -60,6 +60,11 @@
   opacity: 0.8;
 }
 
+.logoSpan span:hover {
+  display: inline-block;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
