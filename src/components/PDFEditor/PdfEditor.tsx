@@ -10,6 +10,7 @@ const PdfEditor: React.FC = () => {
       {
         path: "lib",
         initialDoc: "pdfs/Katz.pdf",
+        css: "css/WebViewer.css",
       },
       viewerDiv.current as HTMLDivElement
     ).then((instance) => {});

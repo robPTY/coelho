@@ -1,3 +1,15 @@
 .webViewer {
   height: 100vh;
 }
+
+.Button.Icon {
+  color: red;
+}
+
+.DocumentContainer {
+  background: tomato;
+}
+
+:host {
+  --icon-color: #000000 !important;
+}
