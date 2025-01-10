@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./PDFUpload.css";
+import axios from "axios";
 import MainHeader from "../../components/MainHeader/MainHeader";
 
 const PDFUpload: React.FC = () => {
@@ -11,6 +12,16 @@ const PDFUpload: React.FC = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("file", file as Blob);
+    const result = await axios.post(
+      "http://localhost:5000/pdf-upload",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    console.log(result);
   };
 
   return (
