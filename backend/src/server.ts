@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const fs = require("fs");
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
-
+app.use("/files", express.static("files"));
 //MongoDB connection ----------------
 const mongoUrl =
   "mongodb+srv://robertoagueron:Blue251525@coelho.0pqzn.mongodb.net/?retryWrites=true&w=majority&appName=Coelho";
@@ -23,7 +22,7 @@ mongoose
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../files");
+    cb(null, "./files");
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now();
@@ -38,23 +37,32 @@ app.get("/", (req, res) => {
   res.send("Success.");
 });
 
-require("./models/Pdf");
+require("./pdfDetails.ts");
 const PdfSchema = mongoose.model("PdfDetails");
-app.post("/pdf-upload", upload.single("file"), async (req, res) => {
+app.post("/upload-files", upload.single("file"), async (req, res) => {
   console.log(req.file);
-  const pdfTitle = req.body.title;
-  const pdfFileName = req.file.filename;
+  const title = req.body.title;
+  const fileName = req.file.filename;
   try {
     await PdfSchema.create({
-      title: pdfTitle,
-      pdf: pdfFileName,
+      title: title,
+      pdf: fileName,
+      uploadedAt: Date.now(),
     });
     res.send({ status: "ok" });
   } catch (error) {
-    res.json({ status: "error", message: error });
+    res.send({ status: "error" });
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+app.get("/get-files", async (req, res) => {
+  try {
+    PdfSchema.find({}).then((data) => {
+      res.send({ status: "ok", data: data });
+    });
+  } catch (error) {}
+});
+
+app.listen(3001, () => {
+  console.log("Server running on port 3001");
 });
