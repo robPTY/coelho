@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./PDFLibrary.css";
+import { useNavigate } from "react-router-dom";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import PDFCard from "./components/PDFCard";
 
 const PDFLibrary: React.FC = () => {
   const [allImage, setAllImage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPDF();
@@ -17,12 +19,22 @@ const PDFLibrary: React.FC = () => {
     setAllImage(result.data.data);
   };
 
+  const handleUpload = () => {
+    navigate("/pdf-upload");
+  };
+
   const testImageUrl = "/images/otter.jpg";
   return (
     <>
       <MainHeader />
       <div className="pdfLibrary">
-        <h1 className="libraryHeader">PDF Library</h1>
+        <div className="pdfLibraryHeader">
+          <button className="decoy">Upload PDF</button>
+          <h1 className="libraryHeader">PDF Library</h1>
+          <button className="uploadButton" onClick={handleUpload}>
+            Upload PDF
+          </button>
+        </div>
         <div className="pdfLibraryContainer">
           {allImage &&
             allImage.map((data: any) => (
