@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import PDFViewer from "../../../components/PDFViewer.tsx";
-import PdfEditor from "../../../components/PDFEditor/PdfEditor.tsx";
-import InternalHeader from "../../../components/InternalHeader/InternalHeader.tsx";
+import PDFViewer from "../../../components/PDFViewer";
+import PdfEditor from "../../../components/PDFEditor/PdfEditor";
+import InternalHeader from "../../../components/InternalHeader/InternalHeader";
 
 const PDFDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

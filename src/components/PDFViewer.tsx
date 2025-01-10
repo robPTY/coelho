@@ -11,18 +11,18 @@ import "./PDFViewer.css";
 const PdfViewer: React.FC<{ fileUrl: string }> = ({ fileUrl }) => {
   const [workerUrl, setWorkerUrl] = useState<string>("");
 
-  useEffect(() => {
-    const fetchWorkerUrl = async () => {
-      const { version } = await import("pdfjs-dist/package.json");
-      setWorkerUrl(
-        `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.js`
-      );
-    };
+  // useEffect(() => {
+  //   const fetchWorkerUrl = async () => {
+  //     const { version } = await import("pdfjs-dist/package.json");
+  //     setWorkerUrl(
+  //       `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.js`
+  //     );
+  //   };
 
-    fetchWorkerUrl();
-  }, []);
+  //   fetchWorkerUrl();
+  // }, []);
 
-  if (!workerUrl) return <div>Loading...</div>;
+  // if (!workerUrl) return <div>Loading...</div>;
 
   return (
     <Worker workerUrl={workerUrl}>

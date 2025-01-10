@@ -1,7 +1,7 @@
 import React from "react";
 import "./PDFLibrary.css";
-import MainHeader from "../../components/MainHeader/MainHeader.tsx";
-import PDFCard from "./components/PDFCard.tsx";
+import MainHeader from "../../components/MainHeader/MainHeader";
+import PDFCard from "./components/PDFCard";
 
 const PDFLibrary: React.FC = () => {
   const testImageUrl = "/images/otter.jpg";

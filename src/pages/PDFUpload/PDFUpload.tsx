@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./PDFUpload.css";
-import MainHeader from "../../components/MainHeader/MainHeader.tsx";
+import MainHeader from "../../components/MainHeader/MainHeader";
 
 const PDFUpload: React.FC = () => {
   const [title, setTitle] = useState("");
