@@ -4,12 +4,12 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import HomePage from "../../pages/HomePage/HomePage.tsx";
-import PDFLibrary from "../../pages/PDFLibrary/PDFLibrary.tsx";
-import PdfEditor from "../../components/PDFEditor/PdfEditor.tsx";
-import PdfPage from "../../components/PDFPage/PdfPage.tsx";
-import PDFUpload from "../../pages/PDFUpload/PDFUpload.tsx";
-import PDFDetails from "../../pages/PDFLibrary/PDFDetails/PDFDetails.tsx";
+import HomePage from "../../pages/HomePage/HomePage";
+import PDFLibrary from "../../pages/PDFLibrary/PDFLibrary";
+import PdfEditor from "../../components/PDFEditor/PdfEditor";
+import PdfPage from "../../components/PDFPage/PdfPage";
+import PDFUpload from "../../pages/PDFUpload/PDFUpload";
+import PDFDetails from "../../pages/PDFLibrary/PDFDetails/PDFDetails";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
