@@ -13,7 +13,7 @@ const PDFUpload: React.FC = () => {
     formData.append("title", title);
     formData.append("file", file as Blob);
     const result = await axios.post(
-      "http://localhost:5000/pdf-upload",
+      "http://localhost:3001/upload-files",
       formData,
       {
         headers: {
