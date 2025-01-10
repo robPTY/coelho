@@ -3,6 +3,7 @@ const PdfDetailsSchema = new mongoose.Schema(
   {
     pdf: String,
     title: String,
+    uploadedAt: Date,
   },
   { collection: "PdfDetails" }
 );

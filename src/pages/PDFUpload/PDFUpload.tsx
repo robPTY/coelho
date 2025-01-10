@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PDFUpload.css";
 import axios from "axios";
 import MainHeader from "../../components/MainHeader/MainHeader";
@@ -6,6 +6,7 @@ import MainHeader from "../../components/MainHeader/MainHeader";
 const PDFUpload: React.FC = () => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [image, setAllImage] = useState(null);
 
   const submitPDF = async (e) => {
     e.preventDefault();
