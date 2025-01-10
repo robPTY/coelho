@@ -37,8 +37,18 @@ app.get("/", (req, res) => {
   res.send("Success.");
 });
 
+require("./pdfDetails.ts");
+const PdfSchema = mongoose.model("PdfDetails");
 app.post("/upload-files", upload.single("file"), async (req, res) => {
   console.log(req.file);
+  const title = req.body.title;
+  const fileName = req.file.filename;
+  try {
+    await PdfSchema.create({ title: title, pdf: fileName });
+    res.send({ status: "ok" });
+  } catch (error) {
+    res.send({ status: "error" });
+  }
 });
 
 app.listen(3001, () => {
