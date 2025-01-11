@@ -3,12 +3,14 @@ import "./PDFUpload.css";
 import axios from "axios";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { MdCloudUpload } from "react-icons/md";
 import MainHeader from "../../components/MainHeader/MainHeader";
 
 const PDFUpload: React.FC = () => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [image, setAllImage] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleBackButton = () => {
@@ -17,6 +19,14 @@ const PDFUpload: React.FC = () => {
 
   const submitPDF = async (e) => {
     e.preventDefault();
+    if (!file) {
+      setUploadStatus("Please choose a file to upload.");
+      return;
+    }
+
+    setLoading(true);
+    setUploadStatus(null);
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("file", file as Blob);
@@ -29,7 +39,12 @@ const PDFUpload: React.FC = () => {
         },
       }
     );
-    console.log(result);
+    if (result.status === 200) {
+      setUploadStatus("File uploaded successfully!");
+      setLoading(false);
+    } else {
+      setUploadStatus("Failed to upload the file.");
+    }
   };
 
   return (
@@ -48,20 +63,36 @@ const PDFUpload: React.FC = () => {
             required
             onChange={(e) => setTitle(e.target.value)}
           />
-          <input
-            className="pdfUploadFile"
-            type="file"
-            accept="application/pdf"
-            required
-            onChange={(e) => {
-              if (e.target.files) {
-                setFile(e.target.files[0]);
-              }
-            }}
-          />
+          <div className="uploadButtonContainer">
+            <label htmlFor="fileInput" className="pdfUploadLabel">
+              Choose File
+              <MdCloudUpload className="uploadIcon" />
+            </label>
+            <input
+              className="pdfUploadFile"
+              type="file"
+              id="fileInput"
+              accept="application/pdf"
+              required
+              onChange={(e) => {
+                if (e.target.files) {
+                  setFile(e.target.files[0]);
+                }
+              }}
+            />
+          </div>
           <button className="pdfUploadButton" type="submit">
-            Upload PDF
+            {loading ? "Uploading..." : "Upload PDF"}
           </button>
+          {uploadStatus && (
+            <div
+              className={`uploadStatus ${
+                uploadStatus.includes("successfully") ? "success" : "error"
+              }`}
+            >
+              {uploadStatus}
+            </div>
+          )}
         </form>
       </div>
     </>

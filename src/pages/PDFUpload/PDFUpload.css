@@ -53,3 +53,45 @@
   display: block;
   text-align: center;
 }
+
+.uploadButtonContainer input {
+  display: none;
+}
+
+.uploadButtonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadButtonContainer label {
+  cursor: pointer;
+  display: block;
+  background-color: #000000;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  display: flex;
+}
+
+.uploadButtonContainer label:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.uploadIcon {
+  font-size: 1.5rem;
+  padding: 0px 10px;
+}
+
+.uploadStatus.success {
+  color: #037305;
+}
+
+.uploadStatus.error {
+  color: #991d1d;
+}
