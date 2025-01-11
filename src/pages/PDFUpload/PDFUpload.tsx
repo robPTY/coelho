@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import "./PDFUpload.css";
 import axios from "axios";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import MainHeader from "../../components/MainHeader/MainHeader";
 
 const PDFUpload: React.FC = () => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [image, setAllImage] = useState(null);
+  const navigate = useNavigate();
+
+  const handleBackButton = () => {
+    navigate("/pdf-library");
+  };
 
   const submitPDF = async (e) => {
     e.preventDefault();
@@ -29,6 +36,9 @@ const PDFUpload: React.FC = () => {
     <>
       <MainHeader />
       <div className="pdfUploadArea">
+        <div className="arrowIconContainer" onClick={handleBackButton}>
+          <IoMdArrowRoundBack className="arrowIcon" />
+        </div>
         <form className="pdfUploadForm" onSubmit={submitPDF}>
           <h3>Upload PDF Here</h3>
           <input
