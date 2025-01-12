@@ -10,8 +10,45 @@
   margin: 0 auto;
   text-align: center;
   padding: 1rem 1rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .libraryHeader {
   font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  flex: 1;
+}
+
+.pdfLibraryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.uploadButton {
+  background-color: #000000;
+  border-radius: 8px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  border: 0;
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
+.uploadButton:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.decoy {
+  background-color: white;
+  border-radius: 8px;
+  color: white;
+  border: 0;
+  padding: 8px 16px;
+  font-size: 1rem;
 }
