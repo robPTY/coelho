@@ -10,6 +10,10 @@ const MainHeader: React.FC = () => {
   const handleLoginClick = () => {
     navigate(`/login`);
   };
+
+  const handleSignupClick = () => {
+    navigate(`/signup`);
+  };
   return (
     <header className="header">
       <div className="logo">
@@ -19,7 +23,9 @@ const MainHeader: React.FC = () => {
       </div>
       <nav className="nav">
         <input type="text" className="search-input" placeholder="Search..." />
-        <button className="signup-btn">Sign Up</button>
+        <button className="signup-btn" onClick={handleSignupClick}>
+          Sign Up
+        </button>
         <button className="login-btn" onClick={handleLoginClick}>
           Login
         </button>

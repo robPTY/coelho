@@ -1,8 +1,13 @@
 import React from "react";
 import "./LoginPage.css";
+import { useNavigate } from "react-router-dom";
 import MainHeader from "components/MainHeader/MainHeader";
 
 const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const handleReroute = () => {
+    navigate("/signup");
+  };
   return (
     <>
       <MainHeader />
@@ -13,7 +18,10 @@ const LoginPage: React.FC = () => {
           </div>
           <h1>Sign in</h1>
           <p>
-            Don't have an account, yet? <a href="/">Sign up here!</a>
+            Don't have an account, yet?{" "}
+            <a className="loginAnchor" onClick={handleReroute}>
+              Sign up here!
+            </a>
           </p>
           <button className="googleSignin">
             <img src="/icons/google_logo.png" alt="Google Logo" />
