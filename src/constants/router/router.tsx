@@ -9,6 +9,7 @@ import PDFLibrary from "../../pages/PDFLibrary/PDFLibrary";
 import PdfEditor from "../../components/PDFEditor/PdfEditor";
 import PdfPage from "../../components/PDFPage/PdfPage";
 import PDFUpload from "../../pages/PDFUpload/PDFUpload";
+import LoginPage from "pages/LogInPage/LoginPage";
 import PDFDetails from "../../pages/PDFLibrary/PDFDetails/PDFDetails";
 
 export const router = createBrowserRouter(
@@ -20,6 +21,7 @@ export const router = createBrowserRouter(
       <Route path="/pdf-editor-test" element={<PdfEditor />} />
       <Route path="/pdf-page-test" element={<PdfPage />} />
       <Route path="/pdf-upload" element={<PDFUpload />} />
+      <Route path="/login" element={<LoginPage />} />
     </>
   )
 );
