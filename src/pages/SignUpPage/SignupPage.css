@@ -85,3 +85,11 @@ p a {
 span {
   color: #000000;
 }
+
+.statusMessage.success p {
+  color: #037305;
+}
+
+.statusMessage.error p {
+  color: #991d1d;
+}
