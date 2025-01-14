@@ -43,15 +43,31 @@ app.post("/upload-files", upload.single("file"), async (req, res) => {
   console.log(req.file);
   const title = req.body.title;
   const fileName = req.file.filename;
+  const user = req.body.user;
   try {
     await PdfSchema.create({
       title: title,
       pdf: fileName,
       uploadedAt: Date.now(),
+      user: user,
     });
     res.send({ status: "ok" });
   } catch (error) {
     res.send({ status: "error" });
+  }
+});
+
+require("./userDetails.ts");
+const UserSchema = mongoose.model("UserDetails");
+app.post("/create-user", async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  try {
+    await UserSchema.create({ name: name, email: email, password: password });
+    res.send({ status: "ok" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 });
 
