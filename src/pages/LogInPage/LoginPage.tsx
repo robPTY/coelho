@@ -28,6 +28,10 @@ const LoginPage: React.FC = () => {
 
       if (result.status === 200) {
         console.log("Login successful:", result.data);
+        const token = result.data.token;
+        if (token) {
+          localStorage.setItem("token", token);
+        }
         navigate("/pdf-library");
       } else {
         console.error("Login failed");

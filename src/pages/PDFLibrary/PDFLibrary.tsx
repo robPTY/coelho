@@ -14,9 +14,21 @@ const PDFLibrary: React.FC = () => {
   }, []);
 
   const getPDF = async () => {
-    const result = await axios.get("http://localhost:3001/get-files");
-    console.log(result.data.data);
-    setAllImage(result.data.data);
+    const token = localStorage.getItem("token");
+    try {
+      const result = await axios.get("http://localhost:3001/get-files", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(result.data.data);
+      setAllImage(result.data.data);
+    } catch (error) {
+      console.error(
+        "Error fetching files:",
+        error.response?.data || error.message
+      );
+    }
   };
 
   const handleUpload = () => {

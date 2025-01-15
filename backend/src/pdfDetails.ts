@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+
 const PdfDetailsSchema = new mongoose.Schema(
   {
     pdf: String,
     title: String,
-    uploadedAt: Date,
+    uploadedAt: { type: Date, default: Date.now },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserDetails",
@@ -12,5 +13,6 @@ const PdfDetailsSchema = new mongoose.Schema(
   },
   { collection: "PdfDetails", timestamps: true }
 );
-mongoose.model("PdfDetails", PdfDetailsSchema);
-export default mongoose.model("PdfDetails");
+
+const PdfDetails = mongoose.model("PdfDetails", PdfDetailsSchema);
+export default PdfDetails;
