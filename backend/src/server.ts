@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
@@ -17,6 +21,22 @@ mongoose
   })
   .catch((err) => console.log(err));
 //-----------------------------------
+
+//Session---------------------------
+app.use(
+  session({
+    secret: "72f3f4552c8244bd56e74c93d2e3b7b7a23e8d1f08c2c44ff7a7b8f21dff24e3",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: mongoUrl,
+    }),
+    cookie: {
+      secure: false,
+      maxAge: 1000 * 60 * 60,
+    },
+  })
+);
 
 //Multer-----------------------------
 const multer = require("multer");
@@ -64,19 +84,61 @@ app.post("/create-user", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   try {
-    await UserSchema.create({ name: name, email: email, password: password });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await UserSchema.create({
+      name: name,
+      email: email,
+      password: hashedPassword,
+    });
     res.send({ status: "ok" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
-app.get("/get-files", async (req, res) => {
+app.post("/login", async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
   try {
-    PdfSchema.find({}).then((data) => {
-      res.send({ status: "ok", data: data });
+    const user = await UserSchema.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    console.log("User", user);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const isPasswordValid = await bcrypt.compare(hashedPassword, user.password);
+    if (isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    req.session.userId = user._id;
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session save error:", err);
+        return res.status(500).json({ message: "Failed to save session" });
+      }
+
+      res.status(200).json({
+        message: "Login successful",
+        userId: user._id,
+      });
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.get("/get-files", async (req, res) => {
+  const currentUser = req.session.userId;
+  if (!currentUser) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+  try {
+    const data = await PdfSchema.find({ user: currentUser });
+    res.send({ status: "ok", data: data });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 app.listen(3001, () => {
