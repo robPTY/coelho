@@ -11,6 +11,7 @@ interface DecodedToken {
   id: string;
   email: string;
   exp: number;
+  name: string;
 }
 
 const PDFUpload: React.FC = () => {

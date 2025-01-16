@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import "./MainHeader.css";
 
-interface User {
+interface DecodedToken {
+  id: string;
+  email: string;
+  exp: number;
   name: string;
 }
 
 const MainHeader: React.FC = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<String | null>(null);
   const handleLogoClick = () => {
     navigate(`/`);
   };
@@ -23,14 +27,24 @@ const MainHeader: React.FC = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const response = await axios.get("/api/session");
-        if (response.data?.user) {
-          setUser(response.data.user);
-        }
-      } catch (error) {
-        console.error("Error fetching user session: ", error);
+      const token = localStorage.getItem("token");
+
+      if (!token || typeof token !== "string") {
+        console.log("Token is missing or invalid.");
+        return;
       }
+
+      const decodedToken = jwtDecode<DecodedToken>(token);
+      const currentTime = Math.floor(Date.now() / 1000);
+      if (decodedToken.exp < currentTime) {
+        console.log("Token has expired. Please log in again.");
+        localStorage.removeItem("token");
+        navigate("/login");
+        return;
+      }
+
+      const userId = decodedToken.name;
+      setUser(userId);
     };
 
     fetchUser();
@@ -46,7 +60,7 @@ const MainHeader: React.FC = () => {
       <nav className="nav">
         <input type="text" className="search-input" placeholder="Search..." />
         {user ? (
-          <p className="welcomeText">Hi, {user.name}!</p>
+          <p className="welcomeText">Hi, {user}!</p>
         ) : (
           <>
             <button className="signup-btn" onClick={handleSignupClick}>
