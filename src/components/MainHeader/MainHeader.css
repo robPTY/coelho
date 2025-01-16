@@ -60,7 +60,7 @@
   opacity: 0.8;
 }
 
-.logoSpan span:hover {
+.logo:hover span:hover {
   display: inline-block;
   cursor: pointer;
 }
