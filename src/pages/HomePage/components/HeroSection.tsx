@@ -1,12 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import "./HeroSection.css";
 
+interface DecodedToken {
+  id: string;
+  email: string;
+  exp: number;
+  name: string;
+}
+
 const HeroSection = () => {
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
   const handleGetStarted = () => {
-    navigate("/login");
+    if (!user) {
+      navigate("/login");
+    } else {
+      navigate("/pdf-library");
+    }
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token || typeof token !== "string") {
+        console.log("Token is missing or invalid.");
+        return;
+      }
+
+      const decodedToken = jwtDecode<DecodedToken>(token);
+      const currentTime = Math.floor(Date.now() / 1000);
+      if (decodedToken.exp < currentTime) {
+        console.log("Token has expired. Please log in again.");
+        localStorage.removeItem("token");
+        navigate("/login");
+        return;
+      }
+
+      const userId = decodedToken.name;
+      setUser(userId);
+    };
+
+    fetchUser();
+  }, []);
+
   return (
     <div className="hero-section">
       <div className="content">
