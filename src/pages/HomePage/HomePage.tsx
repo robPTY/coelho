@@ -1,9 +1,13 @@
 import React from "react";
+import "./HomePage.css";
+import MainHeader from "components/MainHeader/MainHeader";
+import HeroSection from "./components/HeroSection";
 
 const HomePage: React.FC = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <MainHeader />
+      <HeroSection />
     </div>
   );
 };
