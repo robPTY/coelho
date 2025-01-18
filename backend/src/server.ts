@@ -80,7 +80,7 @@ app.get("/", (req, res) => {
 require("./pdfDetails.ts");
 const PdfSchema = mongoose.model("PdfDetails");
 app.post("/upload-files", upload.single("file"), async (req, res) => {
-  console.log(req.file);
+  const file = req.file;
   const title = req.body.title;
   const fileName = req.file.filename;
   const dateAtUpload = Date.now();
