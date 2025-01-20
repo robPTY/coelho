@@ -9,11 +9,17 @@ const PdfEditor: React.FC = () => {
     WebViewer(
       {
         path: "lib",
+        licenseKey:
+          "demo:1737225677540:7e804d700300000000683b2c06ea7e1fb2a74c4237bb18bd1b2ed5860a",
         initialDoc: "pdfs/Katz.pdf",
         css: "css/WebViewer.css",
       },
       viewerDiv.current as HTMLDivElement
-    ).then((instance) => {});
+    )
+      .then((instance) => {})
+      .catch((error) => {
+        console.error("Error initializing WebViewer:", error);
+      });
   }, []);
   return (
     <div>
