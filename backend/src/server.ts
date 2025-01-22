@@ -160,6 +160,19 @@ app.get("/get-files", authenticateToken, async (req, res) => {
   }
 });
 
+app.get("/get-pdf/:id", authenticateToken, async (req, res) => {
+  try {
+    const pdf = await PdfSchema.findById(req.params.id);
+    if (!pdf) {
+      return res.status(404).json({ message: "PDF not found" });
+    }
+    const filePath = `/files/${pdf.pdf}`;
+    res.status(200).json({ title: pdf.title, filePath });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get("/session", (req, res) => {
   const token = req.cookies?.token;
   if (!token) {
